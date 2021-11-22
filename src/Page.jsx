@@ -24,7 +24,7 @@ const Page = ({wallet, chain, wool, reload, total, woolf, stakedWoolf}) => {
     <div className="w-full flex flex-col md:justify-center items-center p-5">
      
       <div className="title text-center justify-self-start mb-5">
-        Wolf Game
+        Fantom Wolf Game
       </div>
 
       <div className="mb-5 font-console text-red text-sm" style={{maxWidth:'600px'}}>
