@@ -121,7 +121,7 @@ const Minting = ({ wallet, chain, stats, reload, woolBalance, total }) => {
   }
 
   const ethCost = () => {
-    return utils.formatUnits(utils.parseEther('.16').mul(BigNumber.from(amount))) + ' BNB'
+    return utils.formatUnits(utils.parseEther('36').mul(BigNumber.from(amount))) + ' FTM'
   }
 
   const woolCost = (tokenId) => {
