@@ -90,11 +90,14 @@ export const loadStakedWoolfList = async (address, total) => {
     const signer = provider.getSigner()
     const contract = new Contract(process.env.REACT_APP_BARN, BARN_ABI, signer)
     const woolfContract = new Contract(process.env.REACT_APP_WOOLF, WOOLF_ABI, signer)
-    console.log(total)
     for (let i = 1; i <= total; i++) {
+        console.log(i)
         // await sleep(500)
         const value = await contract.barn(i);
+        // console.log(value)
         if (value.owner.toLowerCase() === address.toLowerCase()) {
+            // console.log(await woolfContract.tokenURI(i))
+
             const tokenObject = {
                 id: i.toString(16),
                 number: i,
@@ -105,6 +108,8 @@ export const loadStakedWoolfList = async (address, total) => {
             woolfList.push(tokenObject);
         } else {
             if (await woolfContract.ownerOf(i) === process.env.REACT_APP_BARN) {
+                console.log(value)
+                console.log(await woolfContract.tokenURI(i))
                 if (!await contract.isSheep(i)) {
                     const owner = await contract.getWolfOwner(i);
                     if (owner.toLowerCase() === address.toLowerCase()) {
