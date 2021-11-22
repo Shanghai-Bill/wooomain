@@ -14,8 +14,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter >
       <Routes >
-        < Route exact path = '/whitepaper' element = { <Whitepaper/> } /> 
-        < Route exact path = '/tos' element = { <ToS /> } /> 
+        {/* < Route exact path = '/whitepaper' element = { <Whitepaper/> } /> 
+        < Route exact path = '/tos' element = { <ToS /> } />  */}
         < Route path = '/' element = { <App/> } /> 
       </Routes> 
     </BrowserRouter> 

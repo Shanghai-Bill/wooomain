@@ -49,7 +49,7 @@ const OutcomeModal = ({
                 onClick={() => previous()}
                 className="cursor-pointer mr-3"
               >
-                <img src="./images/arrow.svg" alt="previous" style={{
+                <img src="arrow.svg" alt="previous" style={{
                   height:'30px',
                   width: '25px',
                   transform: "rotate(-180deg)"
@@ -70,7 +70,7 @@ const OutcomeModal = ({
               <div className="cursor-pointer ml-3"
                 onClick={() => next()}
               >
-                <img src="./images/arrow.svg" alt="next" style={{
+                <img src="arrow.svg" alt="next" style={{
                   width: '30px',
                   height:'30px'
                 }}/>

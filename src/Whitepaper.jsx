@@ -27,7 +27,7 @@ const Whitepaper = () => {
 
         <p>
           <h4>The tl;dr:</h4>
-          &emsp;- There will only ever be 10,000 Gen 0, minted for 0.16 BNB each. The 40,000 Gen 1 are minted by farming $WOOL<br/>
+          &emsp;- There will only ever be 10,000 Gen 0, minted for 36 FTM each. The 40,000 Gen 1 are minted by farming $WOOL<br/>
           &emsp;- Sheep can be staked in the Barn to earn $WOOL and pay a tax anytime they claim their $WOOL earnings<br/>
           &emsp;- If a Sheep is unstaked from the Barn, the Wolves try to steal all of its accumulated $WOOL<br/>
           &emsp;- When a new Sheep is born, the Wolves attempt to kidnap it. If they’re successful, it’s given to a randomly selected Wolf, instead of the owner who minted it
@@ -55,7 +55,7 @@ const Whitepaper = () => {
           </tr>
           <tr>
             <td>1 to 10,000 (Gen 0)</td>
-            <td>0.16 BNB</td>
+            <td>36 FTM</td>
           </tr>
           <tr>
             <td>10,001 to 20,000</td>

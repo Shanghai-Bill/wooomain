@@ -43,12 +43,18 @@ const Page = ({wallet, chain, wool, reload, total, woolf, stakedWoolf}) => {
             </div>
             <br/>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-2">
-              <WoodButton width={150} height={50} title={'Whitepaper'} fontSize={15} onClick={() => {
-                window.location.href = "/whitepaper";
+              <WoodButton width={150} height={50} title={'Docs'} fontSize={15} onClick={() => {
+                window.open("https://fwolfgame.gitbook.io/fantom-wolf-game/");
               }}/>
-              <img src="./这里替换图.png" style={{maxHeight:'50px'}} alt="public domain" />
+              <WoodButton width={150} height={50} title={'Telegram'} fontSize={15} onClick={() => {
+                window.open("https://t.me/FantomWolfGame_chat");
+              }}/>
+              <WoodButton width={150} height={50} title={'Discord(TBA)'} fontSize={15} onClick={() => {
+                // window.open("https://fwolfgame.gitbook.io/fantom-wolf-game/");
+              }}/>
+              
             </div>
-            <a className="underline" href="./tos" target="_blank" >terms of service</a>
+            
           </div>
           
           
