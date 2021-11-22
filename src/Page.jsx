@@ -33,13 +33,7 @@ const Page = ({wallet, chain, wool, reload, total, woolf, stakedWoolf}) => {
             Sheep and Wolves competing for $WOOL on a farm in the metaverse.  Nothing but blockchain. No roadmap. Fully in the Public Domain.<br/><br/>
             <div style={{ fontSize: '12px' }}>
               <div style={{ fontSize: '20px' }}>⚠️⚠️⚠️️️</div>
-              Currently, Binance Smart Chain is facing extreme heavy load. In this case, there's a delay between the website and blockchain.<br/>
-
-              It's the issue with JSON-RPC endpoint node. Staking list is not showing instantly, but secured.<br/>
-
               Please kindly wait 2-3 minutes until the staking list loads properly after each reload.<br/>
-
-              We're facing on this issue, stay tuned.
             </div>
             <br/>
             <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-2">
