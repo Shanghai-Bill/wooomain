@@ -91,7 +91,6 @@ export const loadStakedWoolfList = async (address, total) => {
     const contract = new Contract(process.env.REACT_APP_BARN, BARN_ABI, signer)
     const woolfContract = new Contract(process.env.REACT_APP_WOOLF, WOOLF_ABI, signer)
     for (let i = 1; i <= total; i++) {
-        console.log(i)
         // await sleep(500)
         const value = await contract.barn(i);
         // console.log(value)
@@ -108,8 +107,6 @@ export const loadStakedWoolfList = async (address, total) => {
             woolfList.push(tokenObject);
         } else {
             if (await woolfContract.ownerOf(i) === process.env.REACT_APP_BARN) {
-                console.log(value)
-                console.log(await woolfContract.tokenURI(i))
                 if (!await contract.isSheep(i)) {
                     const owner = await contract.getWolfOwner(i);
                     if (owner.toLowerCase() === address.toLowerCase()) {
@@ -133,7 +130,6 @@ export const loadTotalSupply = async () => {
     const provider = _getProvider()
     if (!provider) throw new Error('Unable to connect to wallet')
     const signer = provider.getSigner()
-    console.log(process.env.REACT_APP_WOOLF)
     const contract = new Contract(process.env.REACT_APP_WOOLF, WOOLF_ABI, signer)
     return await contract.minted.call()
 }
