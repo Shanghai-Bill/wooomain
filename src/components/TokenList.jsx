@@ -20,7 +20,7 @@ const TokenList = ({title, active, items, selected, toggleSelected, stats}) => {
         className="relative"
         onClick={() => scrollPrev()}
       >
-        <img src="./images/arrow.svg" alt="previous" style={{
+        <img src="/arrow.svg" alt="previous" style={{
           opacity: isFirstItemVisible ? 0 : 1,
           height:'100%',
           marginRight:'5px',
@@ -39,7 +39,7 @@ const TokenList = ({title, active, items, selected, toggleSelected, stats}) => {
         className="relative"
         onClick={() => scrollNext()}
       >
-        <img src="../images/arrow.svg" alt="next" style={{
+        <img src="/arrow.svg" alt="next" style={{
           visibility: isLastItemVisible ? 0 : 1,
           width: "25px",
           height:'100%',

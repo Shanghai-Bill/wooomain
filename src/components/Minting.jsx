@@ -164,13 +164,13 @@ const Minting = ({ wallet, chain, stats, reload, woolBalance, total }) => {
                 Amount
               </div>
               <img
-               src="./images/arrow.svg" alt="decrease"className="arrow-down cursor-pointer" style={{minWidth:'25px'}} onClick={() => {
+               src="/arrow-down.svg" alt="decrease"className="arrow-down cursor-pointer" style={{minWidth:'25px'}} onClick={() => {
                 setAmount(Math.max(1, amount - 1))
               }}/>
               <div className="font-console text-red text-3xl pt-2">
                 {amount}
               </div>
-              <img src="./images/arrow.svg" alt="decrease" className="arrow-up cursor-pointer" style={{minWidth:'25px'}} onClick={() => {
+              <img src="/arrow-up.svg" alt="increase" className="arrow-up cursor-pointer" style={{minWidth:'25px'}} onClick={() => {
                 setAmount(Math.min(10, amount + 1))
               }}/>
             </div>
