@@ -49,6 +49,7 @@ const TokenList = ({title, active, items, selected, toggleSelected, stats}) => {
     );
   }
 
+
   return (
     <div className="w-full" style={{
       border:'4px rgba(42,35,30,1.0) solid', 
@@ -68,7 +69,7 @@ const TokenList = ({title, active, items, selected, toggleSelected, stats}) => {
           {items.map((item) => {
             return (
               <Woolf
-                woolf={parseGraphObject(item)}
+                woolf={item}
                 itemId={item.id} // NOTE: itemId is required for track items
                 title={item.id}
                 key={item.id}

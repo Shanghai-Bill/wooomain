@@ -8,17 +8,12 @@ const Woolf = ({woolf, onClick, selected, stats}) => {
   const MAXIMUM_GLOBAL_WOOL = BigNumber.from(2400000000).mul(BigNumber.from(10).pow(BigNumber.from(18)))
 
   const unclaimedWool = () => {
-    if (!woolf.value) return null
+
     if (woolf.isSheep) {
-      const woolEarned = stats ? stats.woolEarned : 0
-      let duration = Math.floor(Date.now() / 1000) - woolf.value
-      if (BigNumber.from(woolEarned).gte(MAXIMUM_GLOBAL_WOOL)) duration = Math.max(stats.lastClaimTimestamp - woolf.value, 0)
-      const earnings = utils.parseEther('10000').mul(BigNumber.from(duration)).div(BigNumber.from(24 * 60 * 60))
-      return parseBigNumber(earnings, 0)
+      return woolf.unclaimed.toFixed(2);
     } else {
-      const woolPerAlpha = stats ? stats.woolPerAlpha : woolf.value
-      const earnings = BigNumber.from(woolPerAlpha).sub(BigNumber.from(woolf.value)).mul(BigNumber.from(woolf.alpha))
-      return parseBigNumber(earnings, 0)
+      return woolf.unclaimed ? woolf.unclaimed.toFixed(2) : null
+
     }
   }
 
@@ -43,7 +38,7 @@ const Woolf = ({woolf, onClick, selected, stats}) => {
         <div className="absolute font-console text-red text-center flex items-center justify-center" style={{
           width: '100%',
           height: '14px',
-          background: 'white',
+          background: 'transparent',
           bottom:0,
           right: 0,
           fontSize: '10px'

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { WalletHook } from "./utils/ethereum"
 import { woolBalance } from './utils/wool'
 import { loadTotalSupply, loadWoolfList, loadStakedWoolfList } from './utils/woolf'
+import { claimable } from './utils/barn'
 import { useApollo } from './utils/apollo'
 import Page from './Page'
 import Modal from 'react-modal'
@@ -38,6 +39,10 @@ const App = () => {
     const loadStaked = async () => {
       if (!wallet) return
       const value = await loadStakedWoolfList(wallet, total);
+      for (const v of value){
+        const unclaimed = await claimable(v.number,v.isSheep)
+        v.unclaimed = unclaimed
+      }
       setStakedWoolf(value)
     }
 
