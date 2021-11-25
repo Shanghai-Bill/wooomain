@@ -12,8 +12,8 @@ const Container = ({children, transparent=true}) => {
       <div 
         className="absolute" 
         style={{
-          width: '120%',
-          height: '120%',
+          width: '100%',
+          height: '100%',
           top: '-20px',
           left: '-20px',
           opacity: transparent ? '8%' : '4%',
