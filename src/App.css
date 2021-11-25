@@ -651,4 +651,13 @@ h4 {
     }
 }
 
+.selected {
+    color: #b11d18;
+}
+
+.class-for-ids .text-center {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*# sourceMappingURL=main.eab1cf6f.chunk.css.map */
