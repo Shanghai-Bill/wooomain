@@ -95,7 +95,7 @@ const Page = ({wallet, chain, wool, reload, total, woolf, stakedWoolf}) => {
           </Container>
 
           <Container>
-            <div className="flex flex-col items-center font-pixel gap-5" style={{'overflow-y': 'scroll', maxHeight: '450px'}}>
+            <div className="flex flex-col items-center font-pixel gap-5" style={{'overflow-y': 'auto', maxHeight: '450px'}}>
               <div className="subtitle mt-5">
                 friends
               </div>
