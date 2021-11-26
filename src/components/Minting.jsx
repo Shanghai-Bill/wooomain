@@ -117,7 +117,7 @@ const Minting = ({ wallet, chain, stats, reload, woolBalance, total }) => {
   }
 
   const requiresEth = () => {
-    return true
+    return false
   }
 
   const ethCost = () => {
