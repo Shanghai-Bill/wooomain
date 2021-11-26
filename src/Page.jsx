@@ -43,8 +43,20 @@ const Page = ({wallet, chain, wool, reload, total, woolf, stakedWoolf}) => {
               <WoodButton width={150} height={50} title={'Telegram'} fontSize={15} onClick={() => {
                 window.open("https://t.me/FantomWolfGame_chat");
               }}/>
-              <WoodButton width={150} height={50} title={'Discord(TBA)'} fontSize={15} onClick={() => {
-                // window.open("https://fwolfgame.gitbook.io/fantom-wolf-game/");
+              <WoodButton width={150} height={50} title={'twitter'} fontSize={15} onClick={() => {
+                window.open("https://twitter.com/FantomWolfGame");
+              }}/>
+              
+            </div>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-2">
+              <WoodButton width={150} height={50} title={'buy $wool'} fontSize={15} onClick={() => {
+                window.open("https://spookyswap.finance/swap?outputCurrency=0x2E4bF93BdEd3236D0719aa3ceB43932f279EFe1F");
+              }}/>
+              <WoodButton width={150} height={50} title={'buy sheep'} fontSize={15} onClick={() => {
+                window.open("https://paintswap.finance/marketplace/collections/0xd04f2119b174c14210e74e0ebb4a63a1b36ad409");
+              }}/>
+              <WoodButton width={150} height={50} title={'add liquidity'} fontSize={15} onClick={() => {
+                window.open("https://spookyswap.finance/add/0x2E4bF93BdEd3236D0719aa3ceB43932f279EFe1F/0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83");
               }}/>
               
             </div>
