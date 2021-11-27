@@ -35,7 +35,11 @@ const Woolf = ({ woolf, onClick, selected, stats }) => {
           fontSize: "10px",
         }}
       >
-        {woolf.number <= 10000 ? "Gen 0":"Gen 1"}
+        {woolf.number <= 10000
+          ? "Gen 0"
+          : woolf.number <= 20000
+          ? "Gen 1"
+          : "Gen 2"}
       </div>
       <img
         src={decodeTokenURI(woolf.tokenURI).image}
