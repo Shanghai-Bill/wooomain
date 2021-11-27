@@ -25,6 +25,18 @@ const Woolf = ({ woolf, onClick, selected, stats }) => {
       }}
       onClick={onClick}
     >
+      <div
+        style={{
+          width: "100%",
+          height: "10px",
+          background: "transparent",
+          bottom: 0,
+          right: 0,
+          fontSize: "10px",
+        }}
+      >
+        {woolf.number <= 10000 ? "Gen 0":"Gen 1"}
+      </div>
       <img
         src={decodeTokenURI(woolf.tokenURI).image}
         alt="woolf"
@@ -36,7 +48,7 @@ const Woolf = ({ woolf, onClick, selected, stats }) => {
           style={{
             width: "100%",
             height: "14px",
-            background: "transparent",
+            background: "white",
             bottom: 0,
             right: 0,
             fontSize: "10px",
