@@ -121,8 +121,6 @@ export const loadStakedWoolfList2 = async (
   const provider = _getProvider();
   if (!provider) throw new Error("Unable to connect to wallet");
   const signer = provider.getSigner();
-  console.log(process.env.REACT_APP_BARN_API)
-  console.log(BARN_API_ABI)
   const contract = new Contract(
     process.env.REACT_APP_BARN_API,
     BARN_API_ABI,
@@ -136,7 +134,6 @@ export const loadStakedWoolfList2 = async (
   );
   const iv = parseInt(i._hex);
   const list = wollfs.map((i) => parseInt(i._hex)).filter((i) => i !== 0);
-  console.log(list, iv);
   if (iv <= end)
     return list.concat(
       await loadStakedWoolfList2(address, total, iv + 1, iv + 1 + pageSize)
