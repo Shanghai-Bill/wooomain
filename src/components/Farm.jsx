@@ -102,7 +102,7 @@ const Farm = ({ wallet }) => {
                 setDepositAmount(lpBalance.toString());
               }}
             >
-              POWER IN MY PACK: {(lpBalance / 10 ** 18).toString()}
+              POWER IN MY PACK: {(lpBalance / 10 ** 18).toString()} MAX
             </div>
             <div>
               <input
@@ -162,7 +162,7 @@ const Farm = ({ wallet }) => {
                 setWithdrawAmount(staked.toString());
               }}
             >
-              POWER: {(staked / 10 ** 18).toString()}
+              POWER: {(staked / 10 ** 18).toString()} MAX
             </div>
             <div>
               <input
