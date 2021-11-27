@@ -28,8 +28,6 @@ const Farm = ({ wallet }) => {
   const [loadingScenes, setLoadingScenes] = useState([]);
 
   useEffect(() => {
-    console.log(wallet);
-
     async function fetchDate() {
       const _staked = await getStaked(0, wallet);
       setStaked(_staked);
@@ -42,10 +40,6 @@ const Farm = ({ wallet }) => {
         process.env.REACT_APP_MASTERCHEF
       );
       setAllowance(_allowance);
-      console.log(_staked);
-      console.log(_pendingReward);
-      console.log(_lpBalance);
-      console.log(_allowance);
     }
     if (wallet) {
       fetchDate();
@@ -99,7 +93,7 @@ const Farm = ({ wallet }) => {
           <div className="flex flex-col items-center font-pixel gap-5">
             <div
               onClick={() => {
-                setDepositAmount(lpBalance.toString());
+                setDepositAmount((lpBalance / 10 ** 18).toString());
               }}
             >
               POWER IN MY PACK: {(lpBalance / 10 ** 18).toString()} MAX
@@ -107,7 +101,8 @@ const Farm = ({ wallet }) => {
             <div>
               <input
                 type="number"
-                value={depositAmount / 10 ** 18}
+                value={depositAmount}
+                onChange={(e) => setDepositAmount(e.target.value)}
                 style={{ "text-align": "center", height: "50px" }}
               ></input>
             </div>
@@ -124,7 +119,9 @@ const Farm = ({ wallet }) => {
                       source: "",
                     },
                   ]);
-                  const hash = (await deposit(0, depositAmount)).hash;
+                  const hash = (
+                    await deposit(0, utils.parseEther(depositAmount))
+                  ).hash;
                   setTransacting(true);
 
                   watchTransaction(hash, async (receipt, success) => {
@@ -159,7 +156,7 @@ const Farm = ({ wallet }) => {
           <div className="flex flex-col items-center font-pixel gap-5">
             <div
               onClick={() => {
-                setWithdrawAmount(staked.toString());
+                setWithdrawAmount((staked / 10 ** 18).toString());
               }}
             >
               POWER: {(staked / 10 ** 18).toString()} MAX
@@ -167,7 +164,8 @@ const Farm = ({ wallet }) => {
             <div>
               <input
                 type="number"
-                value={withdrawAmount / 10 ** 18}
+                value={withdrawAmount}
+                onChange={(e) => setWithdrawAmount(e.target.value)}
                 style={{ "text-align": "center", height: "50px" }}
               ></input>
             </div>
@@ -183,7 +181,9 @@ const Farm = ({ wallet }) => {
                     source: "",
                   },
                 ]);
-                const hash = (await withdraw(0, withdrawAmount)).hash;
+                const hash = (
+                  await withdraw(0, utils.parseEther(withdrawAmount))
+                ).hash;
                 setTransacting(true);
                 watchTransaction(hash, async (receipt, success) => {
                   if (!success) {
