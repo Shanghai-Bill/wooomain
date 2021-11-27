@@ -79,7 +79,7 @@ const Farm = ({ wallet }) => {
           }}
         ></WoodButton>
         <div style={{ "margin-top": "15px" }}>
-          Deposit your WOOL-FTM LP to power your mower!
+          Deposit your WOOL-wFTM LP to power your mower!
         </div>
         <div style={{ height: "140px", width: "195px" }}>
           {staked != 0 ? (
