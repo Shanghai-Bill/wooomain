@@ -2,6 +2,7 @@ import { Contract, utils, BigNumber } from "ethers";
 import { _getProvider } from "./ethereum";
 import BARN_ABI from "./abi/barn.abi";
 import WOOLF_ABI from "./abi/woolf.abi";
+import CLAIMABLE_ABI from "./abi/claimable.abi";
 
 export const stake = async (account, tokenIds) => {
   const provider = _getProvider();
@@ -76,12 +77,29 @@ export const claimable = async (tokenId, isSheep) => {
       console.log(tokenTraits.alphaIndex);
       const alpha = 8 - tokenTraits.alphaIndex;
       const woolPerAlpha = await barnContract.woolPerAlpha();
-      const packIndices = await barnContract.packIndices(tokenId)
-      const stake = await barnContract.pack(alpha, packIndices)
+      const packIndices = await barnContract.packIndices(tokenId);
+      const stake = await barnContract.pack(alpha, packIndices);
       return (alpha * (woolPerAlpha - stake.value)) / 10 ** 18;
     } catch (e) {
       console.log(e);
       return 0;
     }
+  }
+};
+
+export const getClaimable = async (tokenIds) => {
+  const provider = _getProvider();
+  if (!provider) return [];
+  try {
+    const signer = provider.getSigner();
+    const contract = new Contract(
+      process.env.REACT_APP_CLAIMABLE,
+      CLAIMABLE_ABI,
+      signer
+    );
+    return await contract.getClaimable(tokenIds);
+  } catch (e) {
+    console.log(e);
+    return [];
   }
 };
