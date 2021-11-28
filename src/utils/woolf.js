@@ -88,7 +88,7 @@ export const loadWoolfList = async (address) => {
   }
 };
 
-const pageSize = 1000;
+const pageSize = 2000;
 export const loadStakedWoolfList = async (address, total) => {
   if (total === 0) return [];
   const ids = await loadStakedWoolfList2(address, total);
