@@ -229,7 +229,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   width={150}
                   height={80}
                   fontSize="14px"
-                  title={"SHEAR ALL $WOOL"}
+                  title={"paused"}
                   loading={loading}
                   onClick={() => {
                     const isClaimingSheep = !!selected.find(
@@ -260,7 +260,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                       width={150}
                       height={80}
                       fontSize="16px"
-                      title={"SHEAR $WOOL"}
+                      title={"paused"}
                       loading={loading}
                       onClick={() => {
                         const isClaimingSheep = !!selected.find(
@@ -290,7 +290,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                         width={150}
                         height={80}
                         fontSize="16px"
-                        title={"SHEAR $WOOL AND UNSTAKE"}
+                        title={"paused"}
                         disabled={!canUnstake()}
                         loading={loading}
                         onClick={() => {
@@ -328,7 +328,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                     width={150}
                     height={80}
                     fontSize="16px"
-                    title={"STAKE"}
+                    title={"paused"}
                     loading={loading}
                     onClick={() => {
                       const isStakingSheep = !!selected.find(
