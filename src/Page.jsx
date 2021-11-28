@@ -250,6 +250,7 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
               <div className="subtitle">{friendWords[showType]}</div>
               {showType == 1 ? (
                 <input
+                  placeholder="wallet address"
                   onChange={(e) => {
                     setInputId(e.target.value);
                   }}
