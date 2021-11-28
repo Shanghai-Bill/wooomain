@@ -181,7 +181,7 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
       </div>
 
       <div
-        className="flex flex-col md:flex-row justify-center items-center gap-10 w-full"
+        className="mb-5 flex flex-col md:flex-row justify-center items-center gap-10 w-full"
         style={{ maxWidth: "1500px" }}
       >
         <div className="h-full w-full md:w-1/2 flex justify-between flex flex-col gap-5">
