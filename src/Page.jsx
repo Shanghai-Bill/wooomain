@@ -216,7 +216,7 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
                 <WoodButton
                   width={250}
                   height={50}
-                  title={"friends invite me"}
+                  title={"Invites Received"}
                   fontSize={15}
                   onClick={() => {
                     setShowType(2);
@@ -229,7 +229,7 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
                 <WoodButton
                   width={250}
                   height={50}
-                  title={"friends I invite"}
+                  title={"Invites Sent"}
                   fontSize={15}
                   onClick={() => {
                     setShowType(3);
