@@ -1,7 +1,51 @@
 const abi = [
   {
+    inputs: [],
+    name: "acceptAll",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [{ internalType: "address", name: "target", type: "address" }],
     name: "addFriend",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "friends", type: "address[]" }],
+    name: "addManyFriends",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "cancelAllPendings",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "cancelAllRequests",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "pending", type: "address[]" }],
+    name: "cancelManyPendings",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      { internalType: "address[]", name: "requests", type: "address[]" },
+    ],
+    name: "cancleManyRequests",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
@@ -53,7 +97,7 @@ const abi = [
   },
   {
     inputs: [{ internalType: "address", name: "user", type: "address" }],
-    name: "getRequsetList",
+    name: "getRequestList",
     outputs: [
       { internalType: "address[]", name: "requests", type: "address[]" },
     ],
@@ -90,6 +134,13 @@ const abi = [
   {
     inputs: [{ internalType: "address", name: "target", type: "address" }],
     name: "removeFriend",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address[]", name: "friends", type: "address[]" }],
+    name: "removeManyFriends",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

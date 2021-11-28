@@ -63,7 +63,7 @@ export const addFriend = async (target) => {
     signer
   );
   const gasEstimate = await contract.estimateGas.addFriend(target);
-  return await contract.addManyToBarnAndPack(target, {
+  return await contract.addFriend(target, {
     gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
   });
 };
@@ -78,7 +78,52 @@ export const removeFriend = async (target) => {
     signer
   );
   const gasEstimate = await contract.estimateGas.removeFriend(target);
-  return await contract.addManyToBarnAndPack(target, {
+  return await contract.removeFriend(target, {
+    gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
+  });
+};
+
+export const cancelManyPendings = async (targets) => {
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(
+    process.env.REACT_APP_FRIEND_SYSTEM,
+    FRIEND_SYSTEM_ABI,
+    signer
+  );
+  const gasEstimate = await contract.estimateGas.cancelManyPendings(targets);
+  return await contract.cancelManyPendings(targets, {
+    gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
+  });
+};
+
+export const cancleManyRequests = async (targets) => {
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(
+    process.env.REACT_APP_FRIEND_SYSTEM,
+    FRIEND_SYSTEM_ABI,
+    signer
+  );
+  const gasEstimate = await contract.estimateGas.cancleManyRequests(targets);
+  return await contract.cancleManyRequests(targets, {
+    gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
+  });
+};
+
+export const addManyFriends = async (targets) => {
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(
+    process.env.REACT_APP_FRIEND_SYSTEM,
+    FRIEND_SYSTEM_ABI,
+    signer
+  );
+  const gasEstimate = await contract.estimateGas.addManyFriends(targets);
+  return await contract.addManyFriends(targets, {
     gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
   });
 };
