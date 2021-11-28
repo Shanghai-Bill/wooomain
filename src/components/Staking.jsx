@@ -228,7 +228,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   <WoodButton
                   width={150}
                   height={80}
-                  fontSize="16px"
+                  fontSize="14px"
                   title={"SHEAR ALL $WOOL"}
                   loading={loading}
                   onClick={() => {

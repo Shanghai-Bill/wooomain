@@ -629,7 +629,7 @@ h4 {
 
 @media (min-width:768px) {
     .md\:w-1\/2 {
-        width: 50%
+        width: 33%
     }
     .md\:flex-row {
         flex-direction: row
@@ -649,6 +649,15 @@ h4 {
     .xl\:items-start {
         align-items: flex-start
     }
+}
+
+.selected {
+    color: #b11d18;
+}
+
+.class-for-ids .text-center {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=main.eab1cf6f.chunk.css.map */
