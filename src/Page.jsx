@@ -1,6 +1,7 @@
 import Container from "./components/Container";
 import Minting from "./components/Minting";
 import Farm from "./components/Farm";
+import WeedFarm from "./components/WeedFarm";
 import Staking from "./components/Staking";
 // import { useQuery } from '@apollo/client'
 import { parseGraphObject, QUERY } from "./utils/query";
@@ -419,9 +420,10 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
       >
         <div
           className="h-full w-full flex justify-between flex flex-col gap-5"
-          style={{ width: "60%" }}
+          style={{ width: "60%" , display:"contents"}}
         >
           <Farm wallet={wallet}></Farm>
+          <WeedFarm wallet={wallet}></WeedFarm>
         </div>
       </div>
     </div>

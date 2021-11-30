@@ -16,7 +16,7 @@ import {
 import { utils, BigNumber } from "ethers";
 import LoadingModal from "./LoadingModal";
 
-const Farm = ({ wallet }) => {
+const WeedFarm = ({ wallet }) => {
   const [staked, setStaked] = useState(0);
   const [pendingReward, setPendingReward] = useState(0);
   const [lpBalance, setLpBalance] = useState(0);
@@ -29,21 +29,22 @@ const Farm = ({ wallet }) => {
 
   useEffect(() => {
     async function fetchDate() {
-      const _staked = await getStaked(0, wallet);
+      const _staked = await getStaked(1, wallet);
       setStaked(_staked);
-      const _pendingReward = await pendingweed(0, wallet);
+      const _pendingReward = await pendingweed(1, wallet);
       setPendingReward(_pendingReward);
       const _lpBalance = await balanceOfLp(
         wallet,
-        process.env.REACT_APP_FTM_WOOL_LP
+        process.env.REACT_APP_FTM_WEED_LP
       );
       setLpBalance(_lpBalance);
       const _allowance = await getAllowance(
         wallet,
         process.env.REACT_APP_MASTERCHEF,
-        process.env.REACT_APP_FTM_WOOL_LP
+        process.env.REACT_APP_FTM_WEED_LP
       );
-      setAllowance(_allowance, process.env.REACT_APP_FTM_WOOL_LP);
+      console.log(_allowance)
+      setAllowance(_allowance, process.env.REACT_APP_FTM_WEED_LP);
     }
     if (wallet) {
       fetchDate();
@@ -83,7 +84,7 @@ const Farm = ({ wallet }) => {
           }}
         ></WoodButton>
         <div style={{ "margin-top": "15px" }}>
-          Deposit your WOOL-wFTM LP to power your mower!
+          Deposit your WEED-wFTM LP to power your mower!
         </div>
         <div style={{ height: "140px", width: "195px" }}>
           {staked != 0 ? (
@@ -114,7 +115,7 @@ const Farm = ({ wallet }) => {
               width="200"
               height="50"
               fontSize="15px"
-              title={allowance > 0 ? "inject POWER" : "inject POWER"}
+              title={allowance > 0 ? "inject SUPER POWER" : "Approve"}
               onClick={async () => {
                 if (allowance > 0) {
                   setLoadingScenes([
@@ -124,7 +125,7 @@ const Farm = ({ wallet }) => {
                     },
                   ]);
                   const hash = (
-                    await deposit(0, utils.parseEther(depositAmount))
+                    await deposit(1, utils.parseEther(depositAmount))
                   ).hash;
                   setTransacting(true);
 
@@ -141,7 +142,7 @@ const Farm = ({ wallet }) => {
                     await approve(
                       process.env.REACT_APP_MASTERCHEF,
                       "999999999999999999999999999999999999999999999",
-                      process.env.REACT_APP_FTM_WOOL_LP
+                      process.env.REACT_APP_FTM_WEED_LP
                     )
                   ).hash;
                   setTransacting(true);
@@ -178,7 +179,7 @@ const Farm = ({ wallet }) => {
               width="200"
               height="50"
               fontSize="15px"
-              title="take back POWER"
+              title="take back Super POWER"
               onClick={async () => {
                 setLoadingScenes([
                   {
@@ -187,7 +188,7 @@ const Farm = ({ wallet }) => {
                   },
                 ]);
                 const hash = (
-                  await withdraw(0, utils.parseEther(withdrawAmount))
+                  await withdraw(1, utils.parseEther(withdrawAmount))
                 ).hash;
                 setTransacting(true);
                 watchTransaction(hash, async (receipt, success) => {
@@ -207,4 +208,4 @@ const Farm = ({ wallet }) => {
     </Container>
   );
 };
-export default Farm;
+export default WeedFarm;

@@ -50,24 +50,26 @@ export const withdraw = async (pid, amount) => {
   });
 };
 
-export const approve = async (spender, amount) => {
+export const approve = async (spender, amount, lpAddress) => {
   const provider = _getProvider();
   if (!provider) throw new Error("Unable to connect to wallet");
   const signer = provider.getSigner();
-  const contract = new Contract(process.env.REACT_APP_LP, WOOL_ABI, signer);
+  const contract = new Contract(lpAddress, WOOL_ABI, signer);
   const gasEstimate = await contract.estimateGas.approve(spender, amount);
   return await contract.approve(spender, amount, {
     gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
   });
 };
 
-export const balanceOfLp = async (address) => {
+export const balanceOfLp = async (address, lpAddress) => {
+  console.log(lpAddress)
+  console.log(address)
   const provider = _getProvider();
   if (!provider) return BigNumber.from("0");
   try {
     const signer = provider.getSigner();
     const contract = new Contract(
-      process.env.REACT_APP_LP,
+      lpAddress,
       WOOL_ABI,
       signer
     );
@@ -108,17 +110,17 @@ export const getStaked = async (pid, address) => {
   }
 };
 
-export const getAllowance = async (owner, spender) => {
+export const getAllowance = async (owner, spender, lpAddress) => {
   const provider = _getProvider();
   if (!provider) return BigNumber.from("0");
   try {
     const signer = provider.getSigner();
     const contract = new Contract(
-      process.env.REACT_APP_LP,
+      lpAddress,
       WOOL_ABI,
       signer
     );
-    console.log(await contract.allowance(owner, spender))
+    console.log(lpAddress)
     return await contract.allowance(owner, spender);
   } catch (e) {
     console.log(e);
