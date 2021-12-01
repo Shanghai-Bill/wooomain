@@ -70,7 +70,7 @@ const WeedFarm = ({ wallet }) => {
                 source: "",
               },
             ]);
-            const hash = (await withdraw(0, 0)).hash;
+            const hash = (await withdraw(1, 0)).hash;
             setTransacting(true);
 
             watchTransaction(hash, async (receipt, success) => {
