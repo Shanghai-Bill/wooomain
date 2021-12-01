@@ -24,6 +24,8 @@ const Farm = ({ wallet }) => {
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   const [allowance, setAllowance] = useState(0);
 
+  const [totalLpStaked, setTotalLpStaked] = useState(0);
+
   const [transacting, setTransacting] = useState(false);
   const [loadingScenes, setLoadingScenes] = useState([]);
 
@@ -43,6 +45,13 @@ const Farm = ({ wallet }) => {
         process.env.REACT_APP_MASTERCHEF,
         process.env.REACT_APP_FTM_WOOL_LP
       );
+
+      const _totalLpStaked = await balanceOfLp(
+        process.env.REACT_APP_MASTERCHEF,
+        process.env.REACT_APP_FTM_WOOL_LP
+      );
+      setTotalLpStaked(_totalLpStaked);
+
       setAllowance(_allowance, process.env.REACT_APP_FTM_WOOL_LP);
     }
     if (wallet) {
@@ -165,6 +174,9 @@ const Farm = ({ wallet }) => {
               }}
             >
               POWER: {(staked / 10 ** 18).toString()} MAX
+            </div>
+            <div>
+              (position: {((staked / totalLpStaked) * 100).toPrecision(2)}%)
             </div>
             <div>
               <input

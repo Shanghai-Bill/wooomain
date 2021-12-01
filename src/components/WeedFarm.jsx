@@ -24,6 +24,8 @@ const WeedFarm = ({ wallet }) => {
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   const [allowance, setAllowance] = useState(0);
 
+  const [totalLpStaked, setTotalLpStaked] = useState(0);
+
   const [transacting, setTransacting] = useState(false);
   const [loadingScenes, setLoadingScenes] = useState([]);
 
@@ -43,7 +45,13 @@ const WeedFarm = ({ wallet }) => {
         process.env.REACT_APP_MASTERCHEF,
         process.env.REACT_APP_FTM_WEED_LP
       );
-      console.log(_allowance)
+
+      const _totalLpStaked = await balanceOfLp(
+        process.env.REACT_APP_MASTERCHEF,
+        process.env.REACT_APP_FTM_WEED_LP
+      );
+      setTotalLpStaked(_totalLpStaked);
+
       setAllowance(_allowance, process.env.REACT_APP_FTM_WEED_LP);
     }
     if (wallet) {
@@ -165,7 +173,10 @@ const WeedFarm = ({ wallet }) => {
                 setWithdrawAmount((staked / 10 ** 18).toString());
               }}
             >
-              POWER: {(staked / 10 ** 18).toString()} MAX
+              POWER: {(staked / 10 ** 18).toString()} MAX{" "}
+            </div>
+            <div>
+              (position: {((staked / totalLpStaked) * 100).toPrecision(2)}%)
             </div>
             <div>
               <input
