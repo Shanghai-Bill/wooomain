@@ -173,11 +173,12 @@ const Farm = ({ wallet }) => {
                 setWithdrawAmount((staked / 10 ** 18).toString());
               }}
             >
-              POWER: {(staked / 10 ** 18).toString()} MAX
+              POWER: {(staked / 10 ** 18).toString()} MAX (position:{" "}
+              {((staked / totalLpStaked) * 100).toPrecision(2)}%)
             </div>
-            <div>
+            {/* <div>
               (position: {((staked / totalLpStaked) * 100).toPrecision(2)}%)
-            </div>
+            </div> */}
             <div>
               <input
                 type="number"
@@ -190,7 +191,7 @@ const Farm = ({ wallet }) => {
               width="200"
               height="50"
               fontSize="15px"
-              title="take back POWER"
+              title="take back"
               onClick={async () => {
                 setLoadingScenes([
                   {

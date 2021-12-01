@@ -174,10 +174,11 @@ const WeedFarm = ({ wallet }) => {
               }}
             >
               POWER: {(staked / 10 ** 18).toString()} MAX{" "}
-            </div>
-            <div>
               (position: {((staked / totalLpStaked) * 100).toPrecision(2)}%)
             </div>
+            {/* <div>
+              (position: {((staked / totalLpStaked) * 100).toPrecision(2)}%)
+            </div> */}
             <div>
               <input
                 type="number"
@@ -190,7 +191,7 @@ const WeedFarm = ({ wallet }) => {
               width="200"
               height="50"
               fontSize="15px"
-              title="take back Super POWER"
+              title="take back"
               onClick={async () => {
                 setLoadingScenes([
                   {
