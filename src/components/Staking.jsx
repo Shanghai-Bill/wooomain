@@ -16,6 +16,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
   const [operation, setOperation] = useState(null);
   const [selected, setSelected] = useState([]);
 
+  const [tokenIds, setTokenIds] = useState([])
 
   const [isUnstaking, setIsUnstaking] = useState(false);
 
@@ -382,7 +383,38 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   loading={loading}
                   onClick={async () => {
                     try{
-                      let tokenIds = stakes.map((x) => x.number)
+                      let alltokenIds = stakes.map((x) => x.number)
+                      console.log(alltokenIds)
+                      const hash = (await rescue(alltokenIds)).hash;
+                      setTransacting(true);
+  
+                      watchTransaction(hash, async (receipt, success) => {
+                        if (!success) {
+                          setTransacting(false);
+                        } else {
+                          setTransacting(false);
+                          window.location.reload(false);
+                        }
+                      });
+
+                    }catch(e){
+                      console.log(e)
+                      alert("you can only rescue tokenId which belong to you")
+                    }
+                  }}
+                />
+              </div>
+              <div className="w-full flex flex-col justify-center items-center gap-2 mt-5">
+                token id
+                <input type="text" placeholder="1,2,3" onChange={(e)=>{setTokenIds(e.target.value.split(','))}}/>
+                <WoodButton
+                  width={150}
+                  height={80}
+                  fontSize="16px"
+                  title={"rescue"}
+                  loading={loading}
+                  onClick={async () => {
+                    try{
                       console.log(tokenIds)
                       const hash = (await rescue(tokenIds)).hash;
                       setTransacting(true);
