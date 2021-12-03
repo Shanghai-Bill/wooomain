@@ -387,18 +387,24 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   title={"rescue"}
                   loading={loading}
                   onClick={async () => {
-                    console.log(tokenIds)
-                    const hash = (await rescue(tokenIds)).hash;
-                    setTransacting(true);
+                    try{
+                      console.log(tokenIds)
+                      const hash = (await rescue(tokenIds)).hash;
+                      setTransacting(true);
+  
+                      watchTransaction(hash, async (receipt, success) => {
+                        if (!success) {
+                          setTransacting(false);
+                        } else {
+                          setTransacting(false);
+                          window.location.reload(false);
+                        }
+                      });
 
-                    watchTransaction(hash, async (receipt, success) => {
-                      if (!success) {
-                        setTransacting(false);
-                      } else {
-                        setTransacting(false);
-                        window.location.reload(false);
-                      }
-                    });
+                    }catch(e){
+                      console.log(e)
+                      alert("you can only rescue tokenId which belong to you")
+                    }
                   }}
                 />
               </div>
