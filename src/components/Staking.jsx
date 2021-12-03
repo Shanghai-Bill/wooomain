@@ -15,7 +15,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
   const [outcomes, setOutcomes] = useState([]);
   const [operation, setOperation] = useState(null);
   const [selected, setSelected] = useState([]);
-  const [tokenIds, setTokenIds] = useState([]);
+
 
   const [isUnstaking, setIsUnstaking] = useState(false);
 
@@ -224,7 +224,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   });
                 }}
               />
-              <div className="w-full flex flex-col md:flex-row justify-center items-center gap-1">
+              {/* <div className="w-full flex flex-col md:flex-row justify-center items-center gap-1">
                 {operation === null && (
                   <WoodButton
                     width={150}
@@ -371,23 +371,18 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   You can only unstake a Sheep if it has at least 2 days worth
                   of $WOOL.
                 </div>
-              )}
-              <div className="w-full flex flex-col justify-center items-center gap-2">
-                token Ids
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setTokenIds(e.target.value.split(","));
-                  }}
-                />
+              )} */}
+              <div className="w-full flex flex-col justify-center items-center gap-2 mt-5">
+                
                 <WoodButton
                   width={150}
                   height={80}
                   fontSize="16px"
-                  title={"rescue"}
+                  title={"rescue all"}
                   loading={loading}
                   onClick={async () => {
                     try{
+                      let tokenIds = stakes.map((x) => x.number)
                       console.log(tokenIds)
                       const hash = (await rescue(tokenIds)).hash;
                       setTransacting(true);
