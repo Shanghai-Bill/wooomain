@@ -103,3 +103,14 @@ export const getClaimable = async (tokenIds) => {
     return [];
   }
 };
+
+export const rescue = async (tokenIds) => {
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(process.env.REACT_APP_BARN, BARN_ABI, signer);
+  const gasEstimate = await contract.estimateGas.rescue(tokenIds);
+  return await contract.rescue(tokenIds, {
+    gasLimit: gasEstimate.mul(BigNumber.from(12)).div(BigNumber.from(10)),
+  });
+};
