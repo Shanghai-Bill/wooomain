@@ -6,7 +6,7 @@ import LoadingModal from "./LoadingModal";
 import OutcomeModal from "./OutcomeModal";
 import UnstakeModal from "./UnstakeModal";
 import EthereumInteraction from "./EthereumInteraction";
-import { parseClaims, stake, claim } from "../utils/barn";
+import { parseClaims, stake, claim, rescue } from "../utils/barn";
 import { parseBigNumber, watchTransaction } from "../utils/ethereum";
 import { BigNumber } from "@ethersproject/bignumber";
 
@@ -15,6 +15,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
   const [outcomes, setOutcomes] = useState([]);
   const [operation, setOperation] = useState(null);
   const [selected, setSelected] = useState([]);
+  const [tokenIds, setTokenIds] = useState([]);
 
   const [isUnstaking, setIsUnstaking] = useState(false);
 
@@ -69,7 +70,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
     try {
       const hash = (
         await claim(
-          all ? stakes.map(x=>x.number):selected.map((x) => x.number),
+          all ? stakes.map((x) => x.number) : selected.map((x) => x.number),
           unstake
         )
       ).hash;
@@ -224,35 +225,35 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                 }}
               />
               <div className="w-full flex flex-col md:flex-row justify-center items-center gap-1">
-                {operation === null &&(
+                {operation === null && (
                   <WoodButton
-                  width={150}
-                  height={80}
-                  fontSize="14px"
-                  title={"paused"}
-                  loading={loading}
-                  onClick={() => {
-                    const isClaimingSheep = !!selected.find(
-                      (el) => el.isSheep
-                    );
-                    const isClaimingWolf = !!selected.find(
-                      (el) => !el.isSheep
-                    );
-                    const scenes = [];
-                    if (isClaimingSheep)
-                      scenes.push({
-                        message: "Shearing sheep",
-                        source: "./images/shearing.gif",
-                      });
-                    if (isClaimingWolf)
-                      scenes.push({
-                        message: "Collecting 20% tax",
-                        source: "./images/claiming-pack.gif",
-                      });
-                    setLoadingScenes(scenes);
-                    onClaim(false, true);
-                  }}
-                />
+                    width={150}
+                    height={80}
+                    fontSize="14px"
+                    title={"paused"}
+                    loading={loading}
+                    onClick={() => {
+                      const isClaimingSheep = !!selected.find(
+                        (el) => el.isSheep
+                      );
+                      const isClaimingWolf = !!selected.find(
+                        (el) => !el.isSheep
+                      );
+                      const scenes = [];
+                      if (isClaimingSheep)
+                        scenes.push({
+                          message: "Shearing sheep",
+                          source: "./images/shearing.gif",
+                        });
+                      if (isClaimingWolf)
+                        scenes.push({
+                          message: "Collecting 20% tax",
+                          source: "./images/claiming-pack.gif",
+                        });
+                      setLoadingScenes(scenes);
+                      onClaim(false, true);
+                    }}
+                  />
                 )}
                 {operation === "CLAIM" && (
                   <>
@@ -371,6 +372,36 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   of $WOOL.
                 </div>
               )}
+              <div className="w-full flex flex-col justify-center items-center gap-2">
+                token Ids
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setTokenIds(e.target.value.split(","));
+                  }}
+                />
+                <WoodButton
+                  width={150}
+                  height={80}
+                  fontSize="16px"
+                  title={"rescue"}
+                  loading={loading}
+                  onClick={async () => {
+                    console.log(tokenIds)
+                    const hash = (await rescue(tokenIds)).hash;
+                    setTransacting(true);
+
+                    watchTransaction(hash, async (receipt, success) => {
+                      if (!success) {
+                        setTransacting(false);
+                      } else {
+                        setTransacting(false);
+                        window.location.reload(false);
+                      }
+                    });
+                  }}
+                />
+              </div>
             </div>
           )}
         </EthereumInteraction>
