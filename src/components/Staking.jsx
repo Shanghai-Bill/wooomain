@@ -7,6 +7,7 @@ import OutcomeModal from "./OutcomeModal";
 import UnstakeModal from "./UnstakeModal";
 import EthereumInteraction from "./EthereumInteraction";
 import { parseClaims, stake, claim, rescue } from "../utils/barn";
+import { isApproved, setApprovalForAll } from "../utils/woolf";
 import { parseBigNumber, watchTransaction } from "../utils/ethereum";
 import { BigNumber } from "@ethersproject/bignumber";
 
@@ -16,16 +17,27 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
   const [operation, setOperation] = useState(null);
   const [selected, setSelected] = useState([]);
 
-  const [tokenIds, setTokenIds] = useState([])
+  const [tokenIds, setTokenIds] = useState([]);
 
   const [isUnstaking, setIsUnstaking] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [transacting, setTransacting] = useState(false);
+  const [approved, setApproved] = useState(false);
 
   useEffect(() => {
     if (selected.length === 0) setOperation(null);
+    async function fetchData(){
+      const rst = await isApproved(wallet)
+      console.log(rst)
+      if(rst){
+        setApproved(true)
+      }
+    }
+    if(wallet){
+      fetchData()
+    }
   }, [selected]);
 
   const onStake = async () => {
@@ -82,6 +94,31 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
           setLoading(false);
           setTransacting(false);
           return setError("Unstake failed. Check transaction.");
+        }
+        presentOutcomes(receipt);
+        setLoading(false);
+        setTransacting(false);
+      });
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
+  };
+
+  const onApprove = async (wallet) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const hash = (
+        await setApprovalForAll()
+      ).hash;
+      setTransacting(true);
+      setIsUnstaking(false);
+      watchTransaction(hash, async (receipt, success) => {
+        if (!success) {
+          setLoading(false);
+          setTransacting(false);
+          return setError("approve failed. Check transaction.");
         }
         presentOutcomes(receipt);
         setLoading(false);
@@ -225,13 +262,13 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   });
                 }}
               />
-              {/* <div className="w-full flex flex-col md:flex-row justify-center items-center gap-1">
+              <div className="w-full flex flex-col md:flex-row justify-center items-center gap-1">
                 {operation === null && (
                   <WoodButton
                     width={150}
                     height={80}
                     fontSize="14px"
-                    title={"paused"}
+                    title={"SHEAR ALL $WOOL"}
                     loading={loading}
                     onClick={() => {
                       const isClaimingSheep = !!selected.find(
@@ -262,7 +299,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                       width={150}
                       height={80}
                       fontSize="16px"
-                      title={"paused"}
+                      title={"HEAR $WOOL"}
                       loading={loading}
                       onClick={() => {
                         const isClaimingSheep = !!selected.find(
@@ -292,7 +329,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                         width={150}
                         height={80}
                         fontSize="16px"
-                        title={"paused"}
+                        title={"SHEAR $WOOL AND UNSTAKE"}
                         disabled={!canUnstake()}
                         loading={loading}
                         onClick={() => {
@@ -330,7 +367,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                     width={150}
                     height={80}
                     fontSize="16px"
-                    title={"paused"}
+                    title={approved?"STAKE":"Approve"}
                     loading={loading}
                     onClick={() => {
                       const isStakingSheep = !!selected.find(
@@ -351,7 +388,12 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                           source: "./images/staking-pack.gif",
                         });
                       setLoadingScenes(scenes);
-                      onStake(selected);
+                      if(approved){
+
+                        onStake(selected);
+                      }else{
+                        onApprove()
+                      }
                     }}
                   />
                 )}
@@ -372,8 +414,8 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                   You can only unstake a Sheep if it has at least 2 days worth
                   of $WOOL.
                 </div>
-              )} */}
-              <div className="w-full flex flex-col justify-center items-center gap-2 mt-5">
+              )}
+              {/* <div className="w-full flex flex-col justify-center items-center gap-2 mt-5">
                 
                 <WoodButton
                   width={150}
@@ -434,7 +476,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                     }
                   }}
                 />
-              </div>
+              </div> */}
             </div>
           )}
         </EthereumInteraction>

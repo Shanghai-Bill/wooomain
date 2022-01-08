@@ -58,12 +58,30 @@ export const tokenURI = async (tokenId) => {
   return await contract.tokenURI(tokenId);
 };
 
+export const isApproved = async (address) => {
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(process.env.REACT_APP_WOOLF, WOOLF_ABI, signer);
+  return await contract.isApprovedForAll(address,process.env.REACT_APP_BARN);
+}
+
+export const setApprovalForAll = async () =>{
+  const provider = _getProvider();
+  if (!provider) throw new Error("Unable to connect to wallet");
+  const signer = provider.getSigner();
+  const contract = new Contract(process.env.REACT_APP_WOOLF, WOOLF_ABI, signer);
+
+  const gasEstimate = await contract.estimateGas.setApprovalForAll(process.env.REACT_APP_BARN, true);
+  return await contract.setApprovalForAll(process.env.REACT_APP_BARN, true);
+}
+
 export const loadWoolfList = async (address) => {
   const provider = _getProvider();
   if (!provider) throw new Error("Unable to connect to wallet");
   const signer = provider.getSigner();
   const contract = new Contract(
-    "0xD04F2119B174c14210E74E0EBB4A63a1b36AD409",
+    process.env.REACT_APP_WOOLF,
     WOOLF_ABI,
     signer
   );
@@ -121,17 +139,20 @@ export const loadStakedWoolfList2 = async (
   const provider = _getProvider();
   if (!provider) throw new Error("Unable to connect to wallet");
   const signer = provider.getSigner();
+
   const contract = new Contract(
     process.env.REACT_APP_BARN_API,
     BARN_API_ABI,
     signer
   );
+  console.log("asdf")
   const { wollfs, i } = await contract.getUserWoolf(
     process.env.REACT_APP_BARN,
     address,
     begin,
     end
   );
+
   const iv = parseInt(i._hex);
   const list = wollfs.map((i) => parseInt(i._hex)).filter((i) => i !== 0);
   if (iv <= end)
