@@ -299,7 +299,7 @@ const Staking = ({ fetching, tokens, stakes, wallet, chain, reload, wool }) => {
                       width={150}
                       height={80}
                       fontSize="16px"
-                      title={"HEAR $WOOL"}
+                      title={"SHEAR $WOOL"}
                       loading={loading}
                       onClick={() => {
                         const isClaimingSheep = !!selected.find(
