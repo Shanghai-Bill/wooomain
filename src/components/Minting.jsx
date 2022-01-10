@@ -184,13 +184,13 @@ const Minting = ({ wallet, chain, stats, reload, woolBalance, total }) => {
             ) : (
               <div className="flex xl:flex-row flex-col justify-center items-center gap-5">
                 <div className="flex flex-col justify-center items-center">
-                  <WoodButton width={180} height={40} title={'paused'} fontSize={16} loading={loading} onClick={() => {
+                  <WoodButton width={180} height={40} title={'mint'} fontSize={16} loading={loading} onClick={() => {
                     onMint(false)
                   }}/>
                   <div className="mt-2" style={{height:'20px'}}></div>
                 </div>
                 <div className="flex flex-col justify-center items-center">
-                  <WoodButton width={180} height={40} title={'paused'} fontSize={16} loading={loading} onClick={() => {
+                  <WoodButton width={180} height={40} title={'mint and stake'} fontSize={16} loading={loading} onClick={() => {
                     setMintingAndStaking(true)
                   }}/>
                   <div className="font-console text-xs mt-2 text-center" style={{height:'20px'}}>
