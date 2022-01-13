@@ -146,12 +146,14 @@ export const loadStakedWoolfList2 = async (
     signer
   );
   console.log("asdf")
+  // console.log(begin,end)
   const { wollfs, i } = await contract.getUserWoolf(
     process.env.REACT_APP_BARN,
     address,
     begin,
     end
   );
+  // console.log(wollfs, i)
 
   const iv = parseInt(i._hex);
   const list = wollfs.map((i) => parseInt(i._hex)).filter((i) => i !== 0);

@@ -62,8 +62,8 @@ export const approve = async (spender, amount, lpAddress) => {
 };
 
 export const balanceOfLp = async (address, lpAddress) => {
-  console.log(lpAddress)
-  console.log(address)
+  // console.log(lpAddress)
+  // console.log(address)
   const provider = _getProvider();
   if (!provider) return BigNumber.from("0");
   try {
@@ -120,7 +120,6 @@ export const getAllowance = async (owner, spender, lpAddress) => {
       WOOL_ABI,
       signer
     );
-    console.log(lpAddress)
     return await contract.allowance(owner, spender);
   } catch (e) {
     console.log(e);

@@ -48,7 +48,7 @@ const App = () => {
         // const unclaimed = await claimable(v.number, v.isSheep);
         value[i].unclaimed = parseFloat((a[i] / 10 ** 18).toString());
       }
-      console.log(value)
+      // console.log(value)
       setStakedWoolf(value);
     };
 

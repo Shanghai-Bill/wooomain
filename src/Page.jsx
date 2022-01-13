@@ -82,9 +82,9 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
       setInvitedList(_invitedList);
 
       setShowList(_friendList);
-      console.log(_friendList);
-      console.log(_inviteList);
-      console.log(_invitedList);
+      // console.log(_friendList);
+      // console.log(_inviteList);
+      // console.log(_invitedList);
     }
     fetch();
   }, [wallet]);
@@ -93,7 +93,7 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
     <div className="w-full flex flex-col md:justify-center items-center p-5">
       <LoadingModal modalIsOpen={transacting} loadingScenes={[]} />
       <div className="title text-center justify-self-start mb-5">
-        Fantom Wolf Game
+        Fantom Wolf Game / M
       </div>
 
       <div

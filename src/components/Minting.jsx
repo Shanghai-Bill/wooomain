@@ -149,7 +149,7 @@ const Minting = ({ wallet, chain, stats, reload, woolBalance, total }) => {
     <Container>
       <div className="flex flex-col items-center font-pixel gap-5">
         <div className="subtitle mt-5">
-          MINTING
+          MINTING / M
         </div>
         <MintProgress minted={totalMinted()} maxTokens={maxTokens()}/>
         <div className="mt-2"></div>
