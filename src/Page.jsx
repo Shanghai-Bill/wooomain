@@ -177,6 +177,19 @@ const Page = ({ wallet, chain, wool, reload, total, woolf, stakedWoolf }) => {
                 }}
               />
             </div>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-5 mb-2">
+            <WoodButton
+                width={500}
+                height={50}
+                title={"JOIN LAYER TWO GAME TO MINT ♀🐏"}
+                fontSize={15}
+                onClick={() => {
+                  window.open(
+                    "https://layer2ftmwolfgame.com/"
+                  );
+                }}
+              />
+            </div>
           </div>
         </Container>
       </div>
